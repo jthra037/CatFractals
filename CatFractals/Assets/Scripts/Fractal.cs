@@ -16,12 +16,18 @@ public class Fractal : MonoBehaviour {
         gameObject.AddComponent<MeshFilter>().mesh = mesh;
         gameObject.AddComponent<MeshRenderer>().material = material;
 
-        if (depth < maxDepth) { 
-            new GameObject("Fractal Child").
-                AddComponent<Fractal>().Initialize(this, Vector3.up);
-            new GameObject("Fractal Child").
-                AddComponent<Fractal>().Initialize(this, Vector3.right);
+        if (depth < maxDepth) {
+            StartCoroutine(CreateChildren());
         }
+    }
+
+    private IEnumerator CreateChildren()
+    {
+        yield return new WaitForSeconds(0.5f);
+        new GameObject("Fractal Child").
+            AddComponent<Fractal>().Initialize(this, Vector3.up);
+        new GameObject("Fractal Child").
+            AddComponent<Fractal>().Initialize(this, Vector3.right);
     }
 
     private void Initialize(Fractal parent, Vector3 direction)
