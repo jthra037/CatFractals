@@ -25,12 +25,16 @@ public class Fractal : MonoBehaviour {
     {
         yield return new WaitForSeconds(0.5f);
         new GameObject("Fractal Child").
-            AddComponent<Fractal>().Initialize(this, Vector3.up);
+            AddComponent<Fractal>().Initialize(this, Vector3.up, Quaternion.identity);
         new GameObject("Fractal Child").
-            AddComponent<Fractal>().Initialize(this, Vector3.right);
+            AddComponent<Fractal>().Initialize(this, Vector3.right, Quaternion.Euler(0, 0, -90f));
+        new GameObject("Fractal Child").
+            AddComponent<Fractal>().Initialize(this, Vector3.left, Quaternion.Euler(0, 0, 90f));
     }
 
-    private void Initialize(Fractal parent, Vector3 direction)
+    private void Initialize(Fractal parent, 
+        Vector3 direction, 
+        Quaternion orientation)
     {
         mesh = parent.mesh;
         material = parent.material;
@@ -40,5 +44,6 @@ public class Fractal : MonoBehaviour {
         transform.parent = parent.transform;
         transform.localScale = Vector3.one * childScale;
         transform.localPosition = direction * (0.5f + 0.5f * childScale);
+        transform.localRotation = orientation;
     }
 }
