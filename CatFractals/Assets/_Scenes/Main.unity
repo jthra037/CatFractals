@@ -239,7 +239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   material: {fileID: 2100000, guid: e69b7e12d83c43e4ab0b1f3b38d5412c, type: 2}
-  maxDepth: 4
+  maxDepth: 5
   childScale: 0.5
 --- !u!1 &1949629270
 GameObject:
